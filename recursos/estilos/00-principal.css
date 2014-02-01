@@ -1,0 +1,76 @@
+/*
+  Estilos para la página principal
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #96DB46;
+  height:auto!important;
+}
+
+img {
+  border-style: none;
+  vertical-align: middle;
+}
+
+input, textarea {
+  border-color: #000000;
+}
+
+/*
+  Estilos de los bloques
+*/
+
+#contenedor {
+  font-family: FreeSans, Arial;
+  font-size: 12px;
+  height: 100%;
+  min-height: 100%;
+  background-color: #BEED87;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#encabezado {
+  margin: 0px;
+  font-family: FreeSans, Arial;
+  font-size: 12px;
+  height: auto !important;
+  height: 10%;
+  min-height: 10%;
+  background-color: #6FC230;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#contenido {
+  margin: 0px;
+  font-family: FreeSans, Arial;
+  font-size: 12px;
+  height: auto !important;
+  height: 80%;
+  min-height: 80%;
+  background-color: #DCF5C4;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#pedestal {
+  margin: 0px;
+  font-family: FreeSans, Arial;
+  font-size: 12px;
+  height: auto !important;
+  height: 10%;
+  min-height: 10%;
+  background-color: #6FC230;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}

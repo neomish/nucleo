@@ -1,0 +1,11 @@
+En este lugar se encuentra el archivo de configuración del sistema que se está utilizando.
+
+Se incluyen dos scripts para poder crear la contraseñña que se incluirá en el archivo de configuración
+puede usarse desde la linea de comandos, por ejemplo:
+
+./md5.php clave_nueva_sencilla_sin_espacios
+
+./md5.php "clave super secreta con espacios y todas las floripondias que deseen"
+
+Le devolverá la cadena encriptada que hayq ue colocar en el archivo de configuración para poder acceder
+con el usuario administrador que usted desee.
