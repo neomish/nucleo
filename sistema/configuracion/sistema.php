@@ -1,8 +1,8 @@
 <?php
   $NOMBRE_DEL_SISTEMA        = "Sistema Plurifuncional";
   $USUARIO_ADMINISTRADOR     = "root";
-  $CLAVE_DE_ADMINISTRADOR    = "7b24afc8bc80e548d66c4e7ff72171c5";
-  $TIPO_DE_BASE_DE_DATOS     = "postgresql";
+  $CLAVE_DE_ADMINISTRADOR    = "63a9f0ea7bb98050796b649e85481845";
+  $TIPO_DE_BASE_DE_DATOS     = "sqlite";
   $BASE_DE_DATOS             = "base_de_datos";
   $SERVIDOR_DE_BASE_DE_DATOS = "localhost";
   $USUARIO_DE_BASE_DE_DATOS  = "usuario_de_base";

@@ -1,5 +1,7 @@
 <?php
-  $mensaje = "No hay conei&oacute;n con la base de datos.<br/>Por favor revise la configuraci&oacute;n del sistema y ajuste los par&aacute;metros necesarios.";
+  # $mensaje = "No hay conei&oacute;n con la base de datos.<br/>Por favor revise la configuraci&oacute;n del sistema y ajuste los par&aacute;metros necesarios.";
+  $mensaje = "" ;
+  $archivoCreado = FALSE;
 
   if ( isset( $_REQUEST["accion"] ) ) {
     $accion = $_REQUEST["accion"];
@@ -28,6 +30,7 @@
       if ( @ fwrite ( $gestorArchivo, $ContenidoArchivo  ) ) {
         fclose ( $gestorArchivo );
         $mensaje="Archivo guardado con &eacute;xito.";
+        $archivoCreado = TRUE;
       } else {
         $mensaje="No se pudo guardar el archivo.";
       }
@@ -47,7 +50,8 @@
   $USUARIO_DE_BASE_DE_DATOS_V  = "$USUARIO_DE_BASE_DE_DATOS";
   $CLAVE_DE_BASE_DE_DATOS_V    = "$CLAVE_DE_BASE_DE_DATOS";
 
-  if ( !existe_conexion() ) {
+  if ( !existe_conexion() && $BASE_DE_DATOS_V != "sqlite" && !$archivoCreado ) {
+    $mensaje = "No hay conei&oacute;n con la base de datos.<br/>Por favor revise la configuraci&oacute;n del sistema y ajuste los par&aacute;metros necesarios.<br>" . $mensaje;
 ?>
 <script language='JavaScript'>
   ponerAviso('<?php echo $mensaje; ?>');
@@ -98,6 +102,7 @@
           <option selected="selected">Elija un tipo de base de datos...</option>
           <option value="postgresql">postgresql</option>
           <option value="mysql">mysql</option>
+          <option value="sqlite">sqlite</option>
         </select>
         <script language='JavaScript'>
             validaLista( 'TIPO_DE_BASE_DE_DATOS_V' , 'Elija un tipo de base de datos...' );
@@ -161,7 +166,7 @@
 </form>
 <?php
   } else {
-    construir_base_de_datos()
+    construir_base_de_datos();
 ?>
 <script language='JavaScript'>
   ponerAviso('<?php echo $mensaje; ?>');
