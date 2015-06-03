@@ -1,0 +1,1 @@
+# Cuando se usa sqlite acá deberá aparecer la base de datos creada.
