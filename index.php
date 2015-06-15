@@ -1,6 +1,7 @@
 <?php
   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
   # Sistema de apoyo al inicio de desarrollo de aplicaciones con php  #
+  #                                                                   #
   # Autor: José David Calderón Serrano    # # # # # # # # # # # # # # #
   #        jose.david@calderonbonilla.org #
   #                                       # # # # # # # # # # # # # # # # # # #
