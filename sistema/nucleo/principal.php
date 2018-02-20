@@ -1,5 +1,5 @@
 <?php
-  include "sistema/funciones/primarias.php";
+    include "sistema/funciones/primarias.php";
 ?>
 <html>
   <head>

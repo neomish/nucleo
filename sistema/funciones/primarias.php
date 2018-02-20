@@ -62,8 +62,8 @@
   #Este código coloca un encabezado en las páginas a partir de la estructura general de páginas.
   function colocar_encabezado(){
     include "./sistema/configuracion/sistema.php";
-    if( isset($_SESSION["ingreso"] ) ) {
-      if ($_SESSION["ingreso"] == "autenticado") {
+    if( isset($_SESSION[ $NOMBRE_DEL_SISTEMA ."ingreso"] ) ) {
+      if ($_SESSION[ $NOMBRE_DEL_SISTEMA ."ingreso"] == "autenticado") {
         echo "
           <div id='menu'>
             <ul>
@@ -111,15 +111,16 @@
 
   #Con la siguiete función se evalua si el usuario existe en el núcleo o no
   function entrar_salir( $orden_de_ingreso = "salida" ){
+    include "./sistema/configuracion/sistema.php";
     $resultado = FALSE;
     #La primera evaluación es comprobar si se desea salir, de ser cierto se limpian las variables de sesión
     #Y destruye las sessiones para evitar acceder a contenido del nucleo
     if ( $orden_de_ingreso == "salida" ) {
       # Ejecutar salida del sistema
-      $_SESSION["ingreso"]   = NULL;
-      $_SESSION["usuario"]   = NULL;
-      $_SESSION["idusuario"] = NULL;
-      session_destroy();
+      $_SESSION[ $NOMBRE_DEL_SISTEMA ."ingreso"]   = NULL;
+      $_SESSION[ $NOMBRE_DEL_SISTEMA ."usuario"]   = NULL;
+      $_SESSION[ $NOMBRE_DEL_SISTEMA ."idusuario"] = NULL;
+      #session_destroy();
       #En caso de no querer salir se evalua la petición de acceso con las variables enviadas.
     } else {
       #Acá se busca en el archivo de configuración las credenciales del administrador del núcleo
@@ -131,9 +132,9 @@
       #el usuario que se ha enviado es el que está en el fichero de configuración, por lo que hay que
       #procurar no crear nunca un usuario igual al del archivo de configuración en nombre y clave.
       if ( $USUARIO_ADMINISTRADOR == $usuario && $CLAVE_DE_ADMINISTRADOR == md5 ( $clave) ) {
-        $_SESSION["ingreso"]   = "autenticado";
-        $_SESSION["usuario"]   = "administrador";
-        $_SESSION["idusuario"] = "0";
+        $_SESSION[ $NOMBRE_DEL_SISTEMA ."ingreso"]   = "autenticado";
+        $_SESSION[ $NOMBRE_DEL_SISTEMA ."usuario"]   = "administrador";
+        $_SESSION[ $NOMBRE_DEL_SISTEMA ."idusuario"] = "0";
         $resultado = TRUE;
       } else {
         #En caso de que no sea igual al usuario de la configuración se procede a la búsuqeda en la base
@@ -152,9 +153,9 @@
         #Sí la búsqueda es efectiva, es porque encontró al usuario con la clave que por cierto es otro
         #lugar donde se debería cambiar md5($clave) por el algoritmo que se desee.
         if ( $buscar ) {
-          $_SESSION["ingreso"]   = "autenticado";
-          $_SESSION["usuario"]   = "$usuario";
-          $_SESSION["idusuario"] = $buscar[0]['idusuario'];
+          $_SESSION[ $NOMBRE_DEL_SISTEMA ."ingreso"]   = "autenticado";
+          $_SESSION[ $NOMBRE_DEL_SISTEMA ."usuario"]   = "$usuario";
+          $_SESSION[ $NOMBRE_DEL_SISTEMA ."idusuario"] = $buscar[0]['idusuario'];
           $resultado = TRUE;
         }
       }
@@ -165,11 +166,12 @@
   #Esta funcion espera a ser remplazada en el futuro... mas al no seguri patrones MVC permanecerá acá
   #Simplemente construye el menú de administración del núcleo, lo que compete a usuarios roles y permisos
   function colocar_menu_administrador() {
+    include "./sistema/configuracion/sistema.php";
     #Valida si existe una sesión de usuario
-    if ( isset( $_SESSION["usuario"] ) ) {
+    if ( isset( $_SESSION[ $NOMBRE_DEL_SISTEMA ."usuario"] ) ) {
       #Verifica que el usuario sea el administrador, esto puede ser conflicto aún si el usuario se llama
       #administrador por lo que se comprueba tambien el identificador, lo cual podría ser problema también.
-      if ( $_SESSION["usuario"] == "administrador" && $_SESSION["idusuario"] == "0") {
+      if ( $_SESSION[ $NOMBRE_DEL_SISTEMA ."usuario"] == "administrador" && $_SESSION[ $NOMBRE_DEL_SISTEMA ."idusuario"] == "0") {
         if ( existe_conexion() ){
           incluir_archivo("./sistema/nucleo/menu-administracion.php");
         }
@@ -180,8 +182,9 @@
   #El siguiente procedimiento construye un menu con <ul> y <li> para los usuarios.
   #fue el rescate de una vieja serendipia por lo que no lo he documentado bien.
   function crear_menu() {
+    include "./sistema/configuracion/sistema.php";
     $conexion = conectar ();
-    $idusuario = $_SESSION["idusuario"];
+    $idusuario = $_SESSION[ $NOMBRE_DEL_SISTEMA ."idusuario"];
     /** Vieja sentencia
     $sql = "
       select
@@ -256,14 +259,15 @@
   }
 
   function evaluar_contenido() {
+    include "./sistema/configuracion/sistema.php";
     if ( isset( $_REQUEST["orden_de_ingreso"] ) ) {
       if ( entrar_salir( $_REQUEST["orden_de_ingreso"] ) != TRUE ) {
         $_REQUEST["contenido"] = "./sistema/nucleo/autenticacion.php";
       }
     }
-    if ( isset( $_SESSION["usuario"] ) ) {
+    if ( isset( $_SESSION[ $NOMBRE_DEL_SISTEMA ."usuario"] ) ) {
       if ( !isset( $_REQUEST["contenido"] ) ) {
-        if ( $_SESSION["usuario"] == "administrador" ) {
+        if ( $_SESSION[ $NOMBRE_DEL_SISTEMA ."usuario"] == "administrador" ) {
           # Sí no existe conexíón a la base, en su primera apretura deberá mostrar la pantalla que
           # permita la edición del archivo de configuración del sistema
           if ( existe_conexion() ) {
@@ -276,7 +280,7 @@
         }
       } else {
         $contenido = str_replace( "../", "", $_REQUEST["contenido"] );
-        if ( $_SESSION["usuario"] == "administrador" ) {
+        if ( $_SESSION[ $NOMBRE_DEL_SISTEMA ."usuario"] == "administrador" ) {
           switch ( $contenido ) {
               case "administracion-usuarios":
                 $_REQUEST["contenido"] = "./sistema/nucleo/administracion-usuarios.php";
@@ -310,7 +314,7 @@
                 break;
           }
         } else {
-          $idusuario = $_SESSION["idusuario"];
+          $idusuario = $_SESSION[ $NOMBRE_DEL_SISTEMA ."idusuario"];
           $contenido = $_REQUEST["contenido"];
           $conexion = conectar ();
           $sql = "
