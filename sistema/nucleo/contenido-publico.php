@@ -1,11 +1,18 @@
 <?php
     include "./sistema/configuracion/sistema.php";
 ?>
-<h1>
-    <?php echo $NOMBRE_DEL_SISTEMA ?>
-</h1>
+<article>
+    <h1>
+        <?php echo $NOMBRE_DEL_SISTEMA ?>
+    </h1>
 
-&Eacute;ste contenido es de acceso por todos los visitantes. <br />
-<a class="button" href="./?contenido=./sistema/nucleo/autenticacion.php">
-    Acceder
-</a>
+    <p>
+        &Eacute;ste contenido es de acceso por todos los visitantes.
+    </p>
+    <p>
+        <a class='button' href='./?contenido=acceder'>
+            <img class='icono' src='./recursos/imagenes/password.png'>
+            Acceder
+        </a>
+    </p>
+</article>

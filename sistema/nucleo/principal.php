@@ -2,8 +2,11 @@
     include "sistema/funciones/primarias.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang='es'>
     <head>
+        <meta charset='UTF-8'>
+        <meta name='description' content='<?php echo $NOMBRE_DEL_SISTEMA; ?>'>
+        <meta name="author"      content='<?php echo $NOMBRE_DEL_AUTOR; ?>'  >
         <title>
             <?php
                 echo "
@@ -21,7 +24,7 @@
             <?php
                 evaluar_contenido();
             ?>
-            <div id='encabezado'>
+            <header id='encabezado'>
                 <h1>
                     <?php
                         echo "
@@ -33,19 +36,19 @@
                     colocar_encabezado();
                 ?>
                 <br/>
-            </div>
-            <div id='contenido'>
+            </header>
+            <section id='contenido'>
                 &nbsp;<br/>
                 <?php
                     colocar_contenido();
                 ?>
-            </div>
-            <div id='pedestal'>
+            </section>
+            <footer id='pedestal'>
                 &nbsp;<br/>
                 <?php
                     colocar_pedestal();
                 ?>
-            </div>
+            </footer>
         </div>
     </body>
 </html>

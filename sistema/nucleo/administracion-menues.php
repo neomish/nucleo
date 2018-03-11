@@ -156,7 +156,7 @@
     <table>
       <tr>
         <td>
-          Orden 
+          Orden
         </td>
         <td>
           <input type="text" value="<?php echo $orden ?>" name="orden" size='4' id="orden"/>
@@ -204,7 +204,7 @@
                     <option value='$archivo[$i]'>
                   \n";
                 }
-                
+
                 echo "
                   " . substr(strrchr( $archivo[$i] , '/'), 1) . "
                   </option>
@@ -225,7 +225,7 @@
           Aplicaci&oacute;n
         </td>
         <td>
-          <select name="url" size="8">
+          <select name="url">
             <?php
               if ( $url == "" || $url == "#" ) {
             ?>

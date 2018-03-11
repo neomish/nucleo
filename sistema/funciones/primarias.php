@@ -263,7 +263,8 @@
         if ( isset( $_REQUEST["orden_de_ingreso"] ) ) {
             if ( entrar_salir( $_REQUEST["orden_de_ingreso"] ) != TRUE ) {
                 //$_REQUEST["contenido"] = "./sistema/nucleo/autenticacion.php";
-                $_REQUEST["contenido"] = "./sistema/nucleo/contenido-publico.php";
+                //$_REQUEST["contenido"] = "./sistema/nucleo/contenido-publico.php";
+                $_REQUEST["contenido"] = "principal";
             }
         }
         if ( isset( $_SESSION[ $NOMBRE_DEL_SISTEMA ."usuario"] ) ) {
@@ -353,16 +354,16 @@
             if ( !isset( $_REQUEST["contenido"] ) ){
                 $_REQUEST["contenido"] = "./sistema/nucleo/contenido-publico.php";
             } else {
-                if ( $_REQUEST["contenido"] != "./sistema/nucleo/contenido-publico.php" &&
-                    $_REQUEST["contenido"] != "./sistema/nucleo/autenticacion.php" ) {
+                if ( $_REQUEST["contenido"] != "principal" && $_REQUEST["contenido"] != "acceder" ) {
                     $_REQUEST["contenido"] = "./sistema/nucleo/acceso-prohibido.php";
+                } else {
+                    if ( $_REQUEST["contenido"] == "principal" ) {
+                        $_REQUEST["contenido"] = "./sistema/nucleo/contenido-publico.php";
+                    }
+                    if ( $_REQUEST["contenido"] == "acceder" ) {
+                        $_REQUEST["contenido"] = "./sistema/nucleo/autenticacion.php";
+                    }
                 }
-
-                /*
-                 else {
-                    $_REQUEST["contenido"] = "./sistema/nucleo/contenido-publico.php";
-                }
-                */
             }
         }
     }

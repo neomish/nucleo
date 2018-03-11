@@ -1,5 +1,6 @@
 <?php
   $NOMBRE_DEL_SISTEMA        = "Sistema Plurifuncional";
+  $NOMBRE_DEL_AUTOR          = "Autor del sistema";
   $USUARIO_ADMINISTRADOR     = "root";
   $CLAVE_DE_ADMINISTRADOR    = "7b24afc8bc80e548d66c4e7ff72171c5";
   $TIPO_DE_BASE_DE_DATOS     = "sqlite";

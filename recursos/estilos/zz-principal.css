@@ -3,22 +3,22 @@
 */
 
 * {
-  margin: 0;
-  padding: 0;
+    margin:  0;
+    padding: 0;
 }
 
 body {
-  background-color: #96DB46;
-  height:auto!important;
+    background-color: #96DB46;
+    height:           auto!important;
 }
 
 img {
-  border-style: none;
-  vertical-align: middle;
+    border-style:   none;
+    vertical-align: middle;
 }
 
 input, textarea {
-  border-color: #000000;
+    border-color: #000000;
 }
 
 /*
@@ -26,51 +26,60 @@ input, textarea {
 */
 
 #contenedor {
-  font-family: FreeSans, Arial;
-  font-size: 12px;
-  height: 100%;
-  min-height: 100%;
-  background-color: #BEED87;
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
+    font-family:      FreeSans, Arial;
+    font-size:        12px;
+    /*height:           90vh;*/
+    min-height:       95vh;
+    background-color: #DCF5C4;
+    width:            95vw;
+    margin-left:      auto;
+    margin-right:     auto;
+    border-radius:    5px;
 }
 
 #encabezado {
-  margin: 0px;
-  font-family: FreeSans, Arial;
-  font-size: 12px;
-  height: auto !important;
-  height: 10%;
-  min-height: 10%;
-  background-color: #6FC230;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+    margin:           0px;
+    font-family:      FreeSans, Arial;
+    font-size:        12px;
+    height:           auto !important;
+    /*height:           10vh;*/
+    min-height:       10vh;
+    background-color: #6FC230;
+    width:            95vw;
+    margin-left:      auto;
+    margin-right:     auto;
+    border-radius:    5px;
 }
 
 #contenido {
-  margin: 0px;
-  font-family: FreeSans, Arial;
-  font-size: 12px;
-  height: auto !important;
-  height: 80%;
-  min-height: 80%;
-  background-color: #DCF5C4;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+    margin:           0px;
+    font-family:      FreeSans, Arial;
+    font-size:        12px;
+    height:           auto !important;
+    /*height:           70vh;*/
+    min-height:       70vh;
+    background-color: #BEED87;
+    width:            90vw;
+    margin-left:      auto;
+    margin-right:     auto;
+    border-radius:    5px;
 }
 
 #pedestal {
-  margin: 0px;
-  font-family: FreeSans, Arial;
-  font-size: 12px;
-  height: auto !important;
-  height: 10%;
-  min-height: 10%;
-  background-color: #6FC230;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+    margin:           0px;
+    font-family:      FreeSans, Arial;
+    font-size:        12px;
+    height:           auto !important;
+    /*height:           10vh;*/
+    min-height:       10vh;
+    background-color: #6FC230;
+    width:            95vw;
+    margin-left:      auto;
+    margin-right:     auto;
+    border-radius:    5px;
+}
+
+.icono {
+    height: 32px;
+    width:  32px;
 }
