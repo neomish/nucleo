@@ -3,7 +3,7 @@
 #menu{
     font-family: FreeSans, Arial;
     /*float:       left;*/
-    position: relative;
+    position:    relative;
     font-size:   11px;
 }
 
@@ -12,22 +12,24 @@
 #menu img{
     border-style:   none;
     vertical-align: middle;
-    width:          25px;
-    height:         25px;
+    width:          20px;
+    height:         20px;
 }
 
-/* Enlace del men� que despliega los hidden blocks */
+/* Enlace del menú que despliega los hidden blocks */
 
 #menu a{
     display:         block;
-    border-width:    1px;
+    /*border-width:    1px;*/
+    border-width:    0px;
     border-style:    solid;
     background:      #56A102;
     border-color:    #6fc230;
     text-decoration: none;
     white-space:     nowrap;
     margin:          0;
-    padding:         0 5px;
+    /*padding:         0 5px;*/
+    padding:         2px;
 }
 
 /* Detalles de los enlaces */
@@ -78,8 +80,8 @@
     top:auto;
     display:none;
     visibility:hidden;
-    /*padding: 1em;
-    margin:-1em 0 0 -1em;*/
+    /*padding: 0em;
+    margin:0em 0 0 0em;*/
 }
 
 /* Caracter�sticas de los submenues de los submenues */

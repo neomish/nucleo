@@ -3,7 +3,7 @@
  * By: Trent Richardson [http://trentrichardson.com]
  * Version 1.7
  * Last Modified: 12/19/2008
- * 
+ *
  * Copyright 2008 Trent Richardson
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,63 +18,63 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-jQuery.extend({	
+jQuery.extend({
 	ImpromptuDefaults: { prefix:'jqi', buttons:{ Ok:true }, loaded:function(){}, submit:function(){return true;}, callback:function(){}, opacity:0.6, zIndex: 999, overlayspeed:'slow', promptspeed:'fast', show:'fadeIn', focus:0, useiframe:false, top: '100px' },
-	SetImpromptuDefaults: function(o){ 
+	SetImpromptuDefaults: function(o){
 		jQuery.ImpromptuDefaults = jQuery.extend({},jQuery.ImpromptuDefaults,o);
 	},
 	prompt: function(m,o){
 		o = jQuery.extend({},jQuery.ImpromptuDefaults,o);
-		
-		var ie6 = (jQuery.browser.msie && jQuery.browser.version < 7);	
+
+		var ie6 = (jQuery.browser.msie && jQuery.browser.version < 7);
 		var b = jQuery(document.body);
 		var w = jQuery(window);
-		
-		
-		
-		var msgbox = '<div class="'+ o.prefix +'box" id="'+ o.prefix +'box">';		
+
+
+
+		var msgbox = '<div class="'+ o.prefix +'box" id="'+ o.prefix +'box">';
 		if(o.useiframe && ((jQuery.browser.msie && jQuery('object, applet').length > 0) || ie6))//if you want to use the iframe uncomment these 3 lines
 			msgbox += '<iframe src="javascript:;" class="'+ o.prefix +'fade" id="'+ o.prefix +'fade"></iframe>';
-		else{ 
+		else{
 			if(ie6) jQuery('select').css('visibility','hidden');
 			msgbox +='<div class="'+ o.prefix +'fade" id="'+ o.prefix +'fade"></div>';
-		}	
-		msgbox += '<div class="'+ o.prefix +'" id="'+ o.prefix +'"><div class="'+ o.prefix +'container"><div class="'+ o.prefix +'close">[X]</div><div class="'+ o.prefix +'message">'+ m +'</div><div class="'+ o.prefix +'buttons" id="'+ o.prefix +'buttons">';
+		}
+		msgbox += '<div class="'+ o.prefix +'" id="'+ o.prefix +'"><div class="'+ o.prefix +'container"><div class="'+ o.prefix +'close"><img src="./recursos/imagenes/cancelar.png"></div><div class="'+ o.prefix +'message">'+ m +'</div><div class="'+ o.prefix +'buttons" id="'+ o.prefix +'buttons">';
 		jQuery.each(o.buttons,function(k,v){ msgbox += '<button name="'+ o.prefix +'button'+ k +'" id="'+ o.prefix +'button'+ k +'" value="'+ v +'">'+ k +'</button>'}) ;
 		msgbox += '</div></div></div></div>';
-		
+
 		var jqib =b.append(msgbox).children('#'+ o.prefix +'box');
 		var jqi = jqib.children('#'+ o.prefix);
 		var jqif = jqib.children('#'+ o.prefix +'fade');
 
-		var getWindowScrollOffset = function(){ 
-			return (document.documentElement.scrollTop || document.body.scrollTop) + 'px'; 
-		};		
-		
-		var getWindowSize = function(){ 
+		var getWindowScrollOffset = function(){
+			return (document.documentElement.scrollTop || document.body.scrollTop) + 'px';
+		};
+
+		var getWindowSize = function(){
 			var size = {
 				width: window.innerWidth || (window.document.documentElement.clientWidth || window.document.body.clientWidth),
 				height: window.innerHeight || (window.document.documentElement.clientHeight || window.document.body.clientHeight)
 			};
 			return size;
 		};
-		
-		var ie6scroll = function(){ 
-			jqib.css({ top: getWindowScrollOffset() }); 
+
+		var ie6scroll = function(){
+			jqib.css({ top: getWindowScrollOffset() });
 		};
-		
+
 		var flashPrompt = function(){
 			var i = 0;
 			jqib.addClass(o.prefix +'warning');
-			var intervalid = setInterval(function(){ 
+			var intervalid = setInterval(function(){
 				jqib.toggleClass(o.prefix +'warning');
 				if(i++ > 1){
 					clearInterval(intervalid);
 					jqib.removeClass(o.prefix +'warning');
 				}
-			}, 100);			
-		};		
-		
+			}, 100);
+		};
+
 
 		var escapeKeyClosePrompt = function(e){
 			var key = (window.event) ? event.keyCode : e.keyCode; // MSIE or Firefox?
@@ -85,19 +85,19 @@ jQuery.extend({
 			var wsize = getWindowSize();
 			jqib.css({ position: (ie6)? "absolute" : "fixed", height: wsize.height, width: "100%", top: (ie6)? getWindowScrollOffset():0, left: 0, right: 0, bottom: 0 });
 			jqif.css({ position: "absolute", height: wsize.height, width: "100%", top: 0, left: 0, right: 0, bottom: 0 });
-			jqi.css({ position: "absolute", top: o.top, left: "50%", marginLeft: ((((jqi.css("paddingLeft").split("px")[0]*1) + jqi.width())/2)*-1) });					
+			jqi.css({ position: "absolute", top: o.top, left: "50%", marginLeft: ((((jqi.css("paddingLeft").split("px")[0]*1) + jqi.width())/2)*-1) });
 		};
-		
+
 		var stylePrompt = function(){
 			jqif.css({ zIndex: o.zIndex, display: "none", opacity: o.opacity });
 			jqi.css({ zIndex: o.zIndex+1, display: "none" });
 			jqib.css({ zIndex: o.zIndex });
 		}
-		
+
 		var removePrompt = function(callCallback, clicked, msg){
-			jqi.remove(); 
+			jqi.remove();
 			if(ie6)b.unbind('scroll',ie6scroll);//ie6, remove the scroll event
-			w.unbind('resize',positionPrompt);			
+			w.unbind('resize',positionPrompt);
 			jqif.fadeOut(o.overlayspeed,function(){
 				jqif.unbind('click',flashPrompt);
 				jqif.remove();
@@ -107,15 +107,15 @@ jQuery.extend({
 				if(ie6 && !o.useiframe) jQuery('select').css('visibility','visible');
 			});
 		}
-		
+
 		positionPrompt();
-		stylePrompt();	
+		stylePrompt();
 
 		//Events
-		jQuery('#'+ o.prefix +'buttons').children('button').click(function(){ 
+		jQuery('#'+ o.prefix +'buttons').children('button').click(function(){
 			var msg = jqi.children('.'+ o.prefix +'container').children('.'+ o.prefix +'message');
-			var clicked = o.buttons[jQuery(this).text()];	
-			if(o.submit(clicked,msg))				
+			var clicked = o.buttons[jQuery(this).text()];
+			if(o.submit(clicked,msg))
 				removePrompt(true,clicked,msg);
 		});
 		if(ie6) w.scroll(ie6scroll);//ie6, add a scroll event to fix position:fixed
@@ -123,11 +123,11 @@ jQuery.extend({
 		w.resize(positionPrompt);
 		jqib.keypress(escapeKeyClosePrompt);
 		jqi.find('.'+ o.prefix +'close').click(removePrompt);
-		
+
 		//Show it
 		jqif.fadeIn(o.overlayspeed);
 		jqi[o.show](o.promptspeed,o.loaded);
 		jqi.find('#'+ o.prefix +'buttons button:eq('+ o.focus +')').focus();//focus the default button
 		return jqib;
-	}	
+	}
 });

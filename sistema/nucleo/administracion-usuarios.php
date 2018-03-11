@@ -9,7 +9,9 @@
   }
   $confirmacion = "
     <input type='hidden' name='accion' value='Agregar' />
-    <input type='image' src='./recursos/imagenes/agregar usuario.png' title='Agregar usuario' />
+    <button type='submit' class='success' >
+    <img class='icono' src='./recursos/imagenes/agregar usuario.png' title='Agregar usuario' />
+    </button>
   \n";
   if ( $accion == "preModificar" or $accion == "preEliminar") {
     $idusuario = $_REQUEST["idusuario"];
@@ -30,14 +32,18 @@
       $confirmacion = "
         <input type='hidden' name='idusuario' value='$idusuario' />
         <input type='hidden' name='accion' value='Modificar' />
-        <input type='image' src='./recursos/imagenes/modificar usuario.png' title='Modificar usuario' />
+        <button type='submit' class='warning'>
+        <img class='icono' src='./recursos/imagenes/modificar usuario.png' title='Modificar usuario' />
+        </button>
       \n";
       break;
     case "preEliminar":
       $confirmacion = "
         <input type='hidden' name='idusuario' value='$idusuario' />
         <input type='hidden' name='accion' value='Eliminar' />
-        <input type='image' src='./recursos/imagenes/eliminar usuario.png' title='Eliminar usuario' />
+        <button type='submit' class='error'>
+        <img class='icono' src='./recursos/imagenes/eliminar usuario.png' title='Eliminar usuario' />
+        </button>
       \n";
       break;
     case "Modificar":
@@ -119,31 +125,33 @@
 <form action="./" method="post">
   <input type="hidden" name="contenido" value="administracion-usuarios" />
   <center>
-    <table>
-      <tr>
-        <td>
-          Usuario
-        </td>
-        <td>
-          <input type="text" value="<?php echo $nombre ?>" name="nombre" id="nombre"/>
-          <script language='JavaScript'>
-            validaNombreUsuario( 'nombre' );
-          </script>
-        </td>
-        <td>
-          Clave
-        </td>
-        <td>
-          <input type="password" value="<?php echo $clave ?>" name="clave" id="clave"/>
-          <script language='JavaScript'>
-            validaClave ( 'clave' );
-          </script>
-        </td>
-        <td>
-          <?php echo $confirmacion ?>
-        </td>
-      </tr>
-    </table>
+    <div class='card color-contenido flex two five-500'>
+        <div>
+            <label class='derecho'>
+                Usuario
+            </label>
+        </div>
+        <div>
+            <input type="text" value="<?php echo $nombre ?>" name="nombre" id="nombre"/>
+            <script language='JavaScript'>
+                validaNombreUsuario( 'nombre' );
+            </script>
+        </div>
+        <div>
+            <label class='derecho'>
+                Clave
+            </label>
+        </div>
+        <div>
+            <input type="password" value="<?php echo $clave ?>" name="clave" id="clave"/>
+            <script language='JavaScript'>
+                validaClave ( 'clave' );
+            </script>
+        </div>
+        <div>
+            <?php echo $confirmacion ?>
+        </div>
+    </div>
   </center>
 </form>
 
@@ -151,26 +159,29 @@
 
 <center>
   <table border="1">
-    <tr>
-      <td>
-        No.
-      </td>
-      <td>
-        Usuario
-      </td>
-      <td>
-        Clave
-      </td>
-      <td>
-        Modificar
-      </td>
-      <td>
-        Eliminar
-      </td>
-      <td>
-        Asignar Rol
-      </td>
-    </tr>
+    <thead>
+        <tr>
+          <th>
+            No.
+          </th>
+          <th>
+            Usuario
+          </th>
+          <th>
+            Clave
+          </th>
+          <th>
+            Modificar
+          </th>
+          <th>
+            Eliminar
+          </th>
+          <th>
+            Asignar Rol
+          </th>
+        </tr>
+     </thead>
+     <tbody>
     <?php
       $sql = "
         select
@@ -198,7 +209,9 @@
                 <input type='hidden' name='contenido' value='administracion-usuarios' />
                 <input type='hidden' name='idusuario' value='" . $lista[$i]['idusuario'] . "' />
                 <input type='hidden' name='accion' value='preModificar' />
-                <input type='image' src='./recursos/imagenes/modificar usuario.png' title='Modificar usuario' />
+                <button type='sumbit' class='warning'>
+                <img class='icono' src='./recursos/imagenes/modificar usuario.png' title='Modificar usuario' />
+                </button>
               </form>
             </td>
             <td>
@@ -206,7 +219,9 @@
                 <input type='hidden' name='contenido' value='administracion-usuarios' />
                 <input type='hidden' name='idusuario' value='" . $lista[$i]['idusuario'] . "' />
                 <input type='hidden' name='accion' value='preEliminar' />
-                <input type='image' src='./recursos/imagenes/eliminar usuario.png' title='Eliminar usuario' />
+                <button type='submit' class='error'>
+                <img class='icono' src='./recursos/imagenes/eliminar usuario.png' title='Eliminar usuario' />
+                </button>
               </form>
             </td>
             <td>
@@ -214,12 +229,15 @@
                 <input type='hidden' name='contenido' value='administracion-asignaciones' />
                 <input type='hidden' name='idusuario' value='" . $lista[$i]['idusuario'] . "' />
                 <input type='hidden' name='accion' value='seleccion' />
-                <input type='image' src='./recursos/imagenes/credencial.png' title='Asignar Rol' />
+                <button type='submit' class='success'>
+                <img class='icono' src='./recursos/imagenes/credencial.png' title='Asignar Rol' />
+                </button>
               </form>
             </td>
           </tr>
         \n";
       }
     ?>
+    <tbody>
   </table>
 </center>

@@ -10,7 +10,7 @@
         &Eacute;ste contenido es de acceso por todos los visitantes.
     </p>
     <p>
-        <a class='button' href='./?contenido=acceder'>
+        <a class='button warning' href='./?contenido=acceder'>
             <img class='icono' src='./recursos/imagenes/password.png'>
             Acceder
         </a>

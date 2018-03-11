@@ -10,7 +10,7 @@ function validaRequerido( identificador ){
     campo.add(
         Validate.Presence ,
         {
-            failureMessage: " *"
+            failureMessage: " "
         }
     );
 }
@@ -27,7 +27,7 @@ function validaNombreUsuario( identificador ){
     campo.add (
         Validate.Presence,
         {
-            failureMessage: " *"
+            failureMessage: " "
         }
     );
     campo.add  (
@@ -50,7 +50,7 @@ function validaClave ( identificador ){
     campo.add (
         Validate.Presence ,
         {
-            failureMessage: " *"
+            failureMessage: " "
         }
     );
     campo.add (
